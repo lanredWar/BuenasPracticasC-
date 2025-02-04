@@ -57,14 +57,12 @@ namespace ToDo
                 string choseOption = Console.ReadLine();
                 // Remove one position
                 int indexToRemove = Convert.ToInt32(choseOption) - 1;
-                if (indexToRemove > -1)
+                if (indexToRemove > -1 && TaskList.Count > 0)
                 {
-                    if (TaskList.Count > 0)
-                    {
-                        string taskToRemove = TaskList[indexToRemove];
-                        TaskList.RemoveAt(indexToRemove);
-                        Console.WriteLine("Tarea " + taskToRemove + " eliminada");
-                    }
+                    string taskToRemove = TaskList[indexToRemove];
+                    TaskList.RemoveAt(indexToRemove);
+                    Console.WriteLine("Tarea " + taskToRemove + " eliminada");
+                    
                 }
             }
             catch (Exception)
@@ -95,10 +93,9 @@ namespace ToDo
             else
             {
                 Console.WriteLine("----------------------------------------");
-                for (int currentTask = 0; currentTask < TaskList.Count; currentTask++)
-                {
-                    Console.WriteLine((currentTask + 1) + ". " + TaskList[currentTask]);
-                }
+                int currentTask = 1;
+                TaskList.ForEach(p => Console.WriteLine((currentTask++) + ". " + p));
+                
                 Console.WriteLine("----------------------------------------");
             }
         }

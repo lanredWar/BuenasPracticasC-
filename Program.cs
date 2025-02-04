@@ -57,16 +57,24 @@ namespace ToDo
                 string choseOption = Console.ReadLine();
                 // Remove one position
                 int indexToRemove = Convert.ToInt32(choseOption) - 1;
-                if (indexToRemove > -1 && TaskList.Count > 0)
+                
+                if(indexToRemove > (TaskList.Count -1) || indexToRemove < 0)
                 {
-                    string taskToRemove = TaskList[indexToRemove];
-                    TaskList.RemoveAt(indexToRemove);
-                    Console.WriteLine("Tarea " + taskToRemove + " eliminada");
-                    
+                    System.Console.WriteLine("Numero de tarea seleccionado no es valido");
+                }
+                else
+                {
+                    if(indexToRemove > -1 && TaskList.Count > 0)
+                    {
+                        string taskToRemove = TaskList[indexToRemove];
+                        TaskList.RemoveAt(indexToRemove);
+                        Console.WriteLine("Tarea " + taskToRemove + " eliminada");
+                    }
                 }
             }
             catch (Exception)
             {
+                System.Console.WriteLine("Ha ocurrido un error al eliminar la tarea");
             }
         }
 
@@ -76,11 +84,17 @@ namespace ToDo
             {
                 Console.WriteLine("Ingrese el nombre de la tarea: ");
                 string newTask = Console.ReadLine();
-                TaskList.Add(newTask);
-                Console.WriteLine("Tarea registrada");
+                if(newTask != "" && newTask != null)
+                {
+                    TaskList.Add(newTask);
+                    Console.WriteLine(" - Nueva Tarea registrada - ");
+                }else{
+                    System.Console.WriteLine("Debe colocar un nombre a la tarea");
+                }
             }
             catch (Exception)
             {
+                System.Console.WriteLine("Ha ocurrido un error al ingresar la tarea");
             }
         }
 
